@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee and HR Management System</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome 6 Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ==========================================================================
+         SIDEBAR (WARM ESPRESSO EXACT MATCH TO REFERENCE SCREENSHOT)
+         ========================================================================== -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-logo">O</div>
+            <div class="brand-title">
+                <h6>Employee and HR Management System</h6>
+                <span>HR & OPERATIONS</span>
+            </div>
+        </div>
+
+        <div class="sidebar-menu">
+            <ul class="nav flex-column" role="tablist">
+                <!-- Main Nav Items -->
+                <li class="nav-item">
+                    <button class="menu-item active" data-bs-toggle="tab" data-bs-target="#tab-dashboard" type="button" role="tab">
+                        <i class="fas fa-th-large"></i>
+                        Dashboard
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="menu-item" data-bs-toggle="tab" data-bs-target="#tab-employees" type="button" role="tab">
+                        <i class="fas fa-users"></i>
+                        Employees
+                        <span class="menu-badge bg-primary text-white">150</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="menu-item" data-bs-toggle="tab" data-bs-target="#tab-attendance" type="button" role="tab">
+                        <i class="fas fa-clock"></i>
+                        Attendance
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="menu-item" data-bs-toggle="tab" data-bs-target="#tab-leave" type="button" role="tab">
+                        <i class="fas fa-calendar-check"></i>
+                        Leave Management
+                        <span class="menu-badge bg-warning text-dark">2</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="menu-item" data-bs-toggle="tab" data-bs-target="#tab-payroll" type="button" role="tab">
+                        <i class="fas fa-money-bill-wave"></i>
+                        Payrolls
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="menu-item" data-bs-toggle="tab" data-bs-target="#tab-feedback" type="button" role="tab">
+                        <i class="fas fa-comment-dots"></i>
+                        Employee Feedback
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="menu-item" data-bs-toggle="tab" data-bs-target="#tab-complaints" type="button" role="tab">
+                        <i class="fas fa-shield-alt"></i>
+                        Complaint Box
+                    </button>
+                </li>
+
+                <!-- Team Management Category -->
+                <div class="menu-category">Team Management</div>
+                <li class="nav-item">
+                    <button class="menu-item" data-bs-toggle="tab" data-bs-target="#tab-performance" type="button" role="tab">
+                        <i class="fas fa-chart-line"></i>
+                        Performance
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="menu-item" data-bs-toggle="tab" data-bs-target="#tab-invoices" type="button" role="tab">
+                        <i class="fas fa-receipt"></i>
+                        Invoices
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="menu-item" data-bs-toggle="tab" data-bs-target="#tab-hiring" type="button" role="tab">
+                        <i class="fas fa-briefcase"></i>
+                        Hiring
+                    </button>
+                </li>
+
+                <!-- List & Data Category -->
+                <div class="menu-category">List</div>
+                <li class="nav-item">
+                    <button class="menu-item" data-bs-toggle="tab" data-bs-target="#tab-salary-info" type="button" role="tab">
+                        <i class="fas fa-file-alt"></i>
+                        Salary Information
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="menu-item" data-bs-toggle="tab" data-bs-target="#tab-compensation" type="button" role="tab">
+                        <i class="fas fa-chart-bar"></i>
+                        Compensation Breakdown
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="menu-item" data-bs-toggle="tab" data-bs-target="#tab-project-data" type="button" role="tab">
+                        <i class="fas fa-database"></i>
+                        Project-specific Data
+                    </button>
+                </li>
+
+                <!-- System Category -->
+                <div class="menu-category">System</div>
+                <li class="nav-item">
+                    <button class="menu-item" data-bs-toggle="modal" data-bs-target="#modal-settings" type="button">
+                        <i class="fas fa-cog"></i>
+                        Settings
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="menu-item" data-bs-toggle="modal" data-bs-target="#modal-help" type="button">
+                        <i class="fas fa-question-circle"></i>
+                        Help & Corner
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- ==========================================================================
+         MAIN CONTENT AREA
+         ========================================================================== -->
+    <div class="main-content">
+        <!-- TOP HEADER -->
+        <header class="top-header">
+            <div class="header-left">
+                <div class="header-title">Dashboard</div>
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search anything...">
+                </div>
+            </div>
+
+            <div class="header-right">
+                <!-- Header Icons (Interactive with Modals) -->
+                <div class="header-icons">
+                    <button type="button" class="header-icon-btn" data-bs-toggle="modal" data-bs-target="#modal-calendar-view" title="Company Calendar & Schedule">
+                        <i class="fas fa-calendar-alt"></i>
+                    </button>
+                    <button type="button" class="header-icon-btn position-relative" data-bs-toggle="modal" data-bs-target="#modal-notifications" title="Recent Alerts & Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="header-icon-badge">3</span>
+                    </button>
+                    <button type="button" class="header-icon-btn" data-bs-toggle="modal" data-bs-target="#modal-quick-team" title="Team Members & Directory">
+                        <i class="fas fa-users"></i>
+                    </button>
+                </div>
+
+                <!-- User Profile Button (Interactive Admin Profile Modal) -->
+                <button type="button" class="user-profile" data-bs-toggle="modal" data-bs-target="#modal-user-profile" title="Admin Profile & Account Settings">
+                    <div class="user-avatar">AD</div>
+                    <div class="user-info">
+                        <h6>Admin</h6>
+                        <p>● Available for work</p>
+                    </div>
+                </button>
+            </div>
+        </header>
+
+        <!-- DASHBOARD CONTAINER & TAB PANES -->
+        <div class="dashboard-container">
+            <div class="tab-content">
+
+                <!-- ==========================================================================
+                     TAB 1: DASHBOARD OVERVIEW (EXACT REFERENCE SCREENSHOT REPLICA)
+                     ========================================================================== -->
+                <div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel">
+                    <!-- Welcome Section -->
+                    <div class="dashboard-header">
+                        <h2>Welcome back, Admin! 👋</h2>
+                        <div class="header-controls">
+                            <button type="button" class="date-range" data-bs-toggle="modal" data-bs-target="#modal-date-picker" title="Filter Date Range & Period">
+                                <i class="far fa-calendar-alt text-primary"></i> 01 July - 31 July 2024
+                            </button>
+                            <button class="export-btn" data-bs-toggle="modal" data-bs-target="#modal-export">
+                                <i class="fas fa-chart-pie"></i> Export
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 3 Metric Cards (Reference Match) -->
+                    <div class="dashboard-cards">
+                        <!-- Card 1: Jobs Overview -->
+                        <div class="card-item card-blue">
+                            <div class="card-label">Jobs Overview</div>
+                            <div class="card-main-value">180</div>
+                            <div class="card-sub-values">
+                                <span><div class="icon">+</div> 100 Active Jobs</span>
+                                <span><div class="icon">+</div> 50 In-process Jobs</span>
+                                <span><div class="icon">+</div> 30 Fresh Jobs</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Attendance Rate -->
+                        <div class="card-item card-orange">
+                            <div class="card-label">Attendance Rate</div>
+                            <div class="card-main-value">90%</div>
+                            <div class="card-sub-values">
+                                <span style="color: #26de81; font-weight: 700;"><div class="icon">▲</div> 3.25% since last month</span>
+                                <span style="margin-left: auto;"><strong>⊙ Day Off</strong> &nbsp; <strong>⊙ On time</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Totals Employees -->
+                        <div class="card-item card-green">
+                            <div class="card-label">Totals Employees</div>
+                            <div class="card-main-value">150</div>
+                            <div class="card-sub-values">
+                                <span><div class="icon">+</div> Full-time Employees</span>
+                                <span style="color: #ff6b6b;"><div class="icon">-</div> 50 Freelance Employees</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2-Column Analytics: Income Chart & Performance Ratings -->
+                    <div class="charts-section">
+                        <!-- Left Panel: Income Statistics (Pure SVG Curve) -->
+                        <div class="chart-card">
+                            <h6>
+                                Income Statistics
+                                <a data-bs-toggle="tab" data-bs-target="#tab-payroll" class="chart-more-details">More details ></a>
+                            </h6>
+
+                            <div class="pure-chart-wrapper">
+                                <svg class="chart-svg-container" viewBox="0 0 500 180" preserveAspectRatio="none">
+                                    <defs>
+                                        <linearGradient id="gradIncome" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#667eea" stop-opacity="0.32"/>
+                                            <stop offset="100%" stop-color="#667eea" stop-opacity="0.0"/>
+                                        </linearGradient>
+                                        <linearGradient id="gradExpense" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#ff9f43" stop-opacity="0.25"/>
+                                            <stop offset="100%" stop-color="#ff9f43" stop-opacity="0.0"/>
+                                        </linearGradient>
+                                    </defs>
+
+                                    <!-- Grid Lines -->
+                                    <line x1="0" y1="35" x2="500" y2="35" stroke="#f1f5f9" stroke-dasharray="4"/>
+                                    <line x1="0" y1="80" x2="500" y2="80" stroke="#f1f5f9" stroke-dasharray="4"/>
+                                    <line x1="0" y1="125" x2="500" y2="125" stroke="#f1f5f9" stroke-dasharray="4"/>
+                                    <line x1="0" y1="165" x2="500" y2="165" stroke="#e2e8f0"/>
+
+                                    <!-- Income Area & Curve -->
+                                    <path d="M 0,140 Q 50,110 100,120 T 200,80 T 300,50 T 400,45 T 500,30 L 500,165 L 0,165 Z" fill="url(#gradIncome)"/>
+                                    <path d="M 0,140 Q 50,110 100,120 T 200,80 T 300,50 T 400,45 T 500,30" fill="none" stroke="#667eea" stroke-width="3.5" stroke-linecap="round"/>
+
+                                    <!-- Expense Area & Curve -->
+                                    <path d="M 0,155 Q 60,145 120,135 T 240,110 T 360,115 T 500,95 L 500,165 L 0,165 Z" fill="url(#gradExpense)"/>
+                                    <path d="M 0,155 Q 60,145 120,135 T 240,110 T 360,115 T 500,95" fill="none" stroke="#ff9f43" stroke-width="2.5" stroke-linecap="round"/>
+
+                                    <!-- Key Data Points -->
+                                    <circle cx="200" cy="80" r="4.5" fill="#667eea" stroke="#ffffff" stroke-width="2"/>
+                                    <circle cx="300" cy="50" r="4.5" fill="#667eea" stroke="#ffffff" stroke-width="2"/>
+                                    <circle cx="400" cy="45" r="5" fill="#667eea" stroke="#ffffff" stroke-width="2"/>
+                                </svg>
+                            </div>
+
+                            <div class="chart-legend">
+                                <div class="legend-item">
+                                    <div class="legend-dot income"></div>
+                                    <span>Income: $80,500.00</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-dot expense"></div>
+                                    <span>Expense: $23,250.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Panel: Employee Performance Ratings (Segmented Bars) -->
+                        <div class="performance-card">
+                            <div class="performance-header">
+                                <h6>Employee Performance Ratings</h6>
+                                <span style="color: #94a3b8; font-size: 14px;">⋯</span>
+                            </div>
+
+                            <div class="performance-score">98%</div>
+                            <div class="performance-description">
+                                Most of employees complete their task on time. Great requests to increase employee satisfaction.
+                            </div>
+
+                            <div class="performance-item">
+                                <div class="performance-name">
+                                    <span>Hazel Nutt</span>
+                                    <span class="text-muted" style="font-size: 11px;">95%</span>
+                                </div>
+                                <div class="performance-bar">
+                                    <div class="performance-bar-segment bar-blue" style="width: 70%;" title="Task completed"></div>
+                                    <div class="performance-bar-segment bar-cyan" style="width: 15%;" title="Freelance"></div>
+                                    <div class="performance-bar-segment bar-green" style="width: 15%;" title="Completed meeting"></div>
+                                </div>
+                            </div>
+
+                            <div class="performance-item">
+                                <div class="performance-name">
+                                    <span>Simon Cyrene</span>
+                                    <span class="text-muted" style="font-size: 11px;">90%</span>
+                                </div>
+                                <div class="performance-bar">
+                                    <div class="performance-bar-segment bar-blue" style="width: 60%;"></div>
+                                    <div class="performance-bar-segment bar-cyan" style="width: 20%;"></div>
+                                    <div class="performance-bar-segment bar-green" style="width: 20%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="performance-item">
+                                <div class="performance-name">
+                                    <span>Aida Bugg</span>
+                                    <span class="text-muted" style="font-size: 11px;">88%</span>
+                                </div>
+                                <div class="performance-bar">
+                                    <div class="performance-bar-segment bar-blue" style="width: 50%;"></div>
+                                    <div class="performance-bar-segment bar-cyan" style="width: 30%;"></div>
+                                    <div class="performance-bar-segment bar-green" style="width: 20%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="performance-item">
+                                <div class="performance-name">
+                                    <span>Peg Legge</span>
+                                    <span class="text-muted" style="font-size: 11px;">85%</span>
+                                </div>
+                                <div class="performance-bar">
+                                    <div class="performance-bar-segment bar-blue" style="width: 65%;"></div>
+                                    <div class="performance-bar-segment bar-cyan" style="width: 20%;"></div>
+                                    <div class="performance-bar-segment bar-green" style="width: 15%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="performance-item">
+                                <div class="performance-name">
+                                    <span>Barb Akew</span>
+                                    <span class="text-muted" style="font-size: 11px;">92%</span>
+                                </div>
+                                <div class="performance-bar">
+                                    <div class="performance-bar-segment bar-blue" style="width: 55%;"></div>
+                                    <div class="performance-bar-segment bar-cyan" style="width: 25%;"></div>
+                                    <div class="performance-bar-segment bar-green" style="width: 20%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="perf-legend-bottom">
+                                <span><i class="fas fa-square" style="color: #667eea;"></i> Task completed</span>
+                                <span><i class="fas fa-square" style="color: #00bcd4;"></i> Freelance</span>
+                                <span><i class="fas fa-square" style="color: #26de81;"></i> Completed Meeting</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Section: List Employee Table (Reference Layout) -->
+                    <div class="employees-section">
+                        <div class="employees-header">
+                            <h6>List Employee</h6>
+                            <div class="employees-controls">
+                                <input type="text" class="search-box" placeholder="Search Employee...">
+                                <select class="filter-btn">
+                                    <option>All Status</option>
+                                    <option>Full-time</option>
+                                    <option>Freelance</option>
+                                </select>
+                                <select class="filter-btn">
+                                    <option>All Role</option>
+                                    <option>Designer</option>
+                                    <option>Developer</option>
+                                    <option>Marketing</option>
+                                </select>
+                                <button class="btn btn-sm btn-outline-primary rounded-pill px-3" data-bs-toggle="tab" data-bs-target="#tab-employees" style="font-size: 12px;">View All Directory</button>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive-wrapper">
+                            <table class="employees-table">
+                                <thead>
+                                    <tr>
+                                        <th>Employee ID</th>
+                                        <th>Employee name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Department</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>EMP120124</td>
+                                        <td>
+                                            <div class="employee-name">
+                                                <div class="employee-avatar">HN</div>
+                                                <span>Hazel Nutt</span>
+                                            </div>
+                                        </td>
+                                        <td>hazelnut@mail.com</td>
+                                        <td><span class="role-badge">Lead</span> UIUX Designer</td>
+                                        <td>Team Projects</td>
+                                        <td><span class="status-badge status-full-time">● Full-time</span></td>
+                                        <td>
+                                            <div class="action-icons">
+                                                <a data-bs-toggle="modal" data-bs-target="#modal-emp-detail" title="View"><i class="fas fa-eye"></i></a>
+                                                <a data-bs-toggle="modal" data-bs-target="#modal-payslip" title="Payslip"><i class="fas fa-ellipsis-h"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>EMP120125</td>
+                                        <td>
+                                            <div class="employee-name">
+                                                <div class="employee-avatar av-2">SC</div>
+                                                <span>Simon Cyrene</span>
+                                            </div>
+                                        </td>
+                                        <td>simoncyr@mail.com</td>
+                                        <td><span class="role-badge">Sr</span> UIUX Designer</td>
+                                        <td>Team Projects</td>
+                                        <td><span class="status-badge status-full-time">● Full-time</span></td>
+                                        <td>
+                                            <div class="action-icons">
+                                                <a data-bs-toggle="modal" data-bs-target="#modal-emp-detail" title="View"><i class="fas fa-eye"></i></a>
+                                                <a data-bs-toggle="modal" data-bs-target="#modal-payslip" title="Payslip"><i class="fas fa-ellipsis-h"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>EMP120126</td>
+                                        <td>
+                                            <div class="employee-name">
+                                                <div class="employee-avatar av-3">AB</div>
+                                                <span>Aida Bugg</span>
+                                            </div>
+                                        </td>
+                                        <td>aidabugg@mail.com</td>
+                                        <td><span class="role-badge">Jr</span> Graphics Designer</td>
+                                        <td>Team Marketing</td>
+                                        <td><span class="status-badge status-freelance">● Freelance</span></td>
+                                        <td>
+                                            <div class="action-icons">
+                                                <a data-bs-toggle="modal" data-bs-target="#modal-emp-detail" title="View"><i class="fas fa-eye"></i></a>
+                                                <a data-bs-toggle="modal" data-bs-target="#modal-payslip" title="Payslip"><i class="fas fa-ellipsis-h"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>EMP120127</td>
+                                        <td>
+                                            <div class="employee-name">
+                                                <div class="employee-avatar av-4">PL</div>
+                                                <span>Peg Legge</span>
+                                            </div>
+                                        </td>
+                                        <td>peglegge@mail.com</td>
+                                        <td><span class="role-badge">Jr</span> Animator</td>
+                                        <td>Team Marketing</td>
+                                        <td><span class="status-badge status-full-time">● Full-time</span></td>
+                                        <td>
+                                            <div class="action-icons">
+                                                <a data-bs-toggle="modal" data-bs-target="#modal-emp-detail" title="View"><i class="fas fa-eye"></i></a>
+                                                <a data-bs-toggle="modal" data-bs-target="#modal-payslip" title="Payslip"><i class="fas fa-ellipsis-h"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================================
+                     TAB 2: EMPLOYEES DIRECTORY
+                     ========================================================================== -->
+                <div class="tab-pane fade" id="tab-employees" role="tabpanel">
+                    <div class="dashboard-header">
+                        <div>
+                            <h2>Employee Management</h2>
+                            <p class="text-muted m-0" style="font-size: 13px;">Manage all organization employees, positions and credentials.</p>
+                        </div>
+                        <div class="header-controls">
+                            <button class="btn btn-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modal-add-employee" style="font-size: 13px; font-weight: 600;">
+                                <i class="fas fa-user-plus me-1"></i> Add Employee
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="employees-section">
+                        <div class="employees-header">
+                            <h6>Full Organization Directory (150 Members)</h6>
+                            <div class="employees-controls">
+                                <input type="text" class="search-box" placeholder="Filter by ID, name...">
+                                <select class="filter-btn">
+                                    <option>All Departments</option>
+                                    <option>Team Projects</option>
+                                    <option>Team Marketing</option>
+                                    <option>Engineering</option>
+                                    <option>Operations</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive-wrapper">
+                            <table class="employees-table">
+                                <thead>
+                                    <tr>
+                                        <th>Employee ID</th>
+                                        <th>Employee name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Department</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>EMP120124</td>
+                                        <td><div class="employee-name"><div class="employee-avatar">HN</div> Hazel Nutt</div></td>
+                                        <td>hazelnut@mail.com</td>
+                                        <td><span class="role-badge">Lead</span> UIUX Designer</td>
+                                        <td>Team Projects</td>
+                                        <td><span class="status-badge status-full-time">● Full-time</span></td>
+                                        <td>
+                                            <div class="action-icons">
+                                                <a data-bs-toggle="modal" data-bs-target="#modal-emp-detail"><i class="fas fa-eye"></i></a>
+                                                <a data-bs-toggle="modal" data-bs-target="#modal-payslip"><i class="fas fa-receipt"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>EMP120125</td>
+                                        <td><div class="employee-name"><div class="employee-avatar av-2">SC</div> Simon Cyrene</div></td>
+                                        <td>simoncyr@mail.com</td>
+                                        <td><span class="role-badge">Sr</span> UIUX Designer</td>
+                                        <td>Team Projects</td>
+                                        <td><span class="status-badge status-full-time">● Full-time</span></td>
+                                        <td>
+                                            <div class="action-icons">
+                                                <a data-bs-toggle="modal" data-bs-target="#modal-emp-detail"><i class="fas fa-eye"></i></a>
+                                                <a data-bs-toggle="modal" data-bs-target="#modal-payslip"><i class="fas fa-receipt"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>EMP120126</td>
+                                        <td><div class="employee-name"><div class="employee-avatar av-3">AB</div> Aida Bugg</div></td>
+                                        <td>aidabugg@mail.com</td>
+                                        <td><span class="role-badge">Jr</span> Graphics Designer</td>
+                                        <td>Team Marketing</td>
+                                        <td><span class="status-badge status-freelance">● Freelance</span></td>
+                                        <td>
+                                            <div class="action-icons">
+                                                <a data-bs-toggle="modal" data-bs-target="#modal-emp-detail"><i class="fas fa-eye"></i></a>
+                                                <a data-bs-toggle="modal" data-bs-target="#modal-payslip"><i class="fas fa-receipt"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>EMP120128</td>
+                                        <td><div class="employee-name"><div class="employee-avatar av-5">BA</div> Barb Akew</div></td>
+                                        <td>barbakew@mail.com</td>
+                                        <td><span class="role-badge">Sr</span> Fullstack Dev</td>
+                                        <td>Engineering</td>
+                                        <td><span class="status-badge status-full-time">● Full-time</span></td>
+                                        <td>
+                                            <div class="action-icons">
+                                                <a data-bs-toggle="modal" data-bs-target="#modal-emp-detail"><i class="fas fa-eye"></i></a>
+                                                <a data-bs-toggle="modal" data-bs-target="#modal-payslip"><i class="fas fa-receipt"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================================
+                     TAB 3: ATTENDANCE MANAGEMENT
+                     ========================================================================== -->
+                <div class="tab-pane fade" id="tab-attendance" role="tabpanel">
+                    <div class="dashboard-header">
+                        <div>
+                            <h2>Attendance Management</h2>
+                            <p class="text-muted m-0" style="font-size: 13px;">Daily punch logs, shift monitoring and attendance records.</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-cards">
+                        <div class="card-item card-green">
+                            <div class="card-label">Present Today</div>
+                            <div class="card-main-value">142 <span style="font-size: 16px; color: #26de81;">(94.6%)</span></div>
+                            <div class="card-sub-values"><span>● 138 On time check-ins</span></div>
+                        </div>
+                        <div class="card-item card-orange">
+                            <div class="card-label">On Leave Today</div>
+                            <div class="card-main-value">6 <span style="font-size: 16px; color: #ff9f43;">(4.0%)</span></div>
+                            <div class="card-sub-values"><span>● 4 Annual Leaves, 2 Sick</span></div>
+                        </div>
+                        <div class="card-item card-blue">
+                            <div class="card-label">Late Check-ins</div>
+                            <div class="card-main-value">2 <span style="font-size: 16px; color: #ff6b6b;">(1.4%)</span></div>
+                            <div class="card-sub-values"><span>● Avg delay 12 minutes</span></div>
+                        </div>
+                    </div>
+
+                    <div class="employees-section">
+                        <div class="employees-header">
+                            <h6>Today's Attendance Logs (18 Sep 2026)</h6>
+                        </div>
+                        <div class="table-responsive-wrapper">
+                            <table class="employees-table">
+                                <thead>
+                                    <tr>
+                                        <th>Employee</th>
+                                        <th>Department</th>
+                                        <th>Check-In</th>
+                                        <th>Check-Out</th>
+                                        <th>Total Hours</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><div class="employee-name"><div class="employee-avatar">HN</div> Hazel Nutt</div></td>
+                                        <td>Team Projects</td>
+                                        <td>09:02 AM</td>
+                                        <td>--:--</td>
+                                        <td>Active</td>
+                                        <td><span class="status-badge status-full-time">● Present</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="employee-name"><div class="employee-avatar av-2">SC</div> Simon Cyrene</div></td>
+                                        <td>Team Projects</td>
+                                        <td>09:14 AM</td>
+                                        <td>--:--</td>
+                                        <td>Active</td>
+                                        <td><span class="status-badge status-full-time">● Present</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================================
+                     TAB 4: LEAVE MANAGEMENT
+                     ========================================================================== -->
+                <div class="tab-pane fade" id="tab-leave" role="tabpanel">
+                    <div class="dashboard-header">
+                        <div>
+                            <h2>Leave Management</h2>
+                            <p class="text-muted m-0" style="font-size: 13px;">Manage holiday allowances, leave applications, and approvals.</p>
+                        </div>
+                        <div class="header-controls">
+                            <button class="btn btn-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modal-apply-leave" style="font-size: 13px; font-weight: 600;">
+                                <i class="fas fa-calendar-plus me-1"></i> Apply for Leave
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-cards">
+                        <div class="card-item card-blue">
+                            <div class="card-label">Annual Paid Leave</div>
+                            <div class="card-main-value">14 <span style="font-size: 15px; color: #8c98a4;">/ 18 Days</span></div>
+                            <div class="card-sub-values"><span>4 days used this year</span></div>
+                        </div>
+                        <div class="card-item card-green">
+                            <div class="card-label">Sick Leave</div>
+                            <div class="card-main-value">8 <span style="font-size: 15px; color: #8c98a4;">/ 10 Days</span></div>
+                            <div class="card-sub-values"><span>2 days used this year</span></div>
+                        </div>
+                        <div class="card-item card-orange">
+                            <div class="card-label">Casual / Personal Leave</div>
+                            <div class="card-main-value">5 <span style="font-size: 15px; color: #8c98a4;">/ 6 Days</span></div>
+                            <div class="card-sub-values"><span>1 day used this year</span></div>
+                        </div>
+                    </div>
+
+                    <div class="employees-section">
+                        <div class="employees-header">
+                            <h6>Pending & Recent Leave Requests</h6>
+                        </div>
+                        <div class="table-responsive-wrapper">
+                            <table class="employees-table">
+                                <thead>
+                                    <tr>
+                                        <th>Request ID</th>
+                                        <th>Applicant</th>
+                                        <th>Leave Type</th>
+                                        <th>Dates</th>
+                                        <th>Reason</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>LV-8821</td>
+                                        <td><strong>Hazel Nutt</strong></td>
+                                        <td>Annual Leave</td>
+                                        <td>24 Sep - 28 Sep (5 Days)</td>
+                                        <td>Family vacation</td>
+                                        <td><span class="status-badge status-freelance">● Pending</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>LV-8822</td>
+                                        <td><strong>Aida Bugg</strong></td>
+                                        <td>Sick Leave</td>
+                                        <td>19 Sep (1 Day)</td>
+                                        <td>Medical checkup</td>
+                                        <td><span class="status-badge status-full-time">● Approved</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================================
+                     TAB 5: PAYROLL MANAGEMENT
+                     ========================================================================== -->
+                <div class="tab-pane fade" id="tab-payroll" role="tabpanel">
+                    <div class="dashboard-header">
+                        <div>
+                            <h2>Payroll Management</h2>
+                            <p class="text-muted m-0" style="font-size: 13px;">Salary distribution, tax deductions and employee payslips.</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-cards">
+                        <div class="card-item card-blue">
+                            <div class="card-label">Monthly Payroll Cost</div>
+                            <div class="card-main-value">$148,500</div>
+                            <div class="card-sub-values"><span>150 Active Employees</span></div>
+                        </div>
+                        <div class="card-item card-green">
+                            <div class="card-label">Net Disbursed</div>
+                            <div class="card-main-value">$128,400</div>
+                            <div class="card-sub-values"><span>Direct bank deposits completed</span></div>
+                        </div>
+                        <div class="card-item card-orange">
+                            <div class="card-label">Taxes & Deductions</div>
+                            <div class="card-main-value">$20,100</div>
+                            <div class="card-sub-values"><span>Statutory taxes & PF</span></div>
+                        </div>
+                    </div>
+
+                    <div class="employees-section">
+                        <div class="employees-header">
+                            <h6>Employee Payroll Ledger</h6>
+                        </div>
+                        <div class="table-responsive-wrapper">
+                            <table class="employees-table">
+                                <thead>
+                                    <tr>
+                                        <th>Employee ID</th>
+                                        <th>Name</th>
+                                        <th>Role</th>
+                                        <th>Base Salary</th>
+                                        <th>Allowances</th>
+                                        <th>Deductions</th>
+                                        <th>Net Pay</th>
+                                        <th>Payslip</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>EMP120124</td>
+                                        <td><strong>Hazel Nutt</strong></td>
+                                        <td>Lead UIUX Designer</td>
+                                        <td>$3,480</td>
+                                        <td>$2,320</td>
+                                        <td>$1,044</td>
+                                        <td class="fw-bold text-success">$4,756</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#modal-payslip" style="font-size: 11.5px;">
+                                                <i class="fas fa-receipt me-1"></i> View Payslip
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>EMP120125</td>
+                                        <td><strong>Simon Cyrene</strong></td>
+                                        <td>Sr UIUX Designer</td>
+                                        <td>$3,120</td>
+                                        <td>$2,080</td>
+                                        <td>$936</td>
+                                        <td class="fw-bold text-success">$4,264</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#modal-payslip" style="font-size: 11.5px;">
+                                                <i class="fas fa-receipt me-1"></i> View Payslip
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================================
+                     TAB 6: EMPLOYEE FEEDBACK
+                     ========================================================================== -->
+                <div class="tab-pane fade" id="tab-feedback" role="tabpanel">
+                    <div class="dashboard-header">
+                        <div>
+                            <h2>Employee Feedback & Surveys</h2>
+                            <p class="text-muted m-0" style="font-size: 13px;">Team sentiment, culture reviews and suggestion box.</p>
+                        </div>
+                        <div class="header-controls">
+                            <button class="btn btn-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modal-feedback" style="font-size: 13px; font-weight: 600;">
+                                <i class="fas fa-pen-fancy me-1"></i> Submit Feedback
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card-item">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="badge bg-primary-subtle text-primary">Workplace Culture</span>
+                                    <span style="color: #ff9f43; font-size: 12px;">⭐⭐⭐⭐⭐ 5/5</span>
+                                </div>
+                                <h6 class="fw-bold">Collaborative & Supportive Environment</h6>
+                                <p class="text-muted" style="font-size: 13px;">The design sprint methodology introduced this month made cross-functional handoffs much smoother between UI/UX and engineering teams.</p>
+                                <div class="text-muted border-top pt-2" style="font-size: 11px;">Anonymous • 2 days ago</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card-item">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="badge bg-success-subtle text-success">Facilities & Equipment</span>
+                                    <span style="color: #ff9f43; font-size: 12px;">⭐⭐⭐⭐ 4/5</span>
+                                </div>
+                                <h6 class="fw-bold">Ergonomic Chairs & Monitors Request</h6>
+                                <p class="text-muted" style="font-size: 13px;">Requesting additional 4K dual monitor arms for the animation and rendering workstations in Room 3B.</p>
+                                <div class="text-muted border-top pt-2" style="font-size: 11px;">Team Marketing • 4 days ago</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================================
+                     TAB 7: COMPLAINT MANAGEMENT
+                     ========================================================================== -->
+                <div class="tab-pane fade" id="tab-complaints" role="tabpanel">
+                    <div class="dashboard-header">
+                        <div>
+                            <h2>Grievance & Complaint Management</h2>
+                            <p class="text-muted m-0" style="font-size: 13px;">Confidential issue reporting and dispute resolution tickets.</p>
+                        </div>
+                        <div class="header-controls">
+                            <button class="btn btn-danger rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modal-complaint" style="font-size: 13px; font-weight: 600;">
+                                <i class="fas fa-shield-alt me-1"></i> File Grievance
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="employees-section">
+                        <div class="employees-header">
+                            <h6>Confidential Ticket Logs</h6>
+                        </div>
+                        <div class="table-responsive-wrapper">
+                            <table class="employees-table">
+                                <thead>
+                                    <tr>
+                                        <th>Ticket ID</th>
+                                        <th>Category</th>
+                                        <th>Subject</th>
+                                        <th>Priority</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>GR-5012</td>
+                                        <td>IT & Access</td>
+                                        <td>VPN gateway disconnect during remote shifts</td>
+                                        <td><span class="badge bg-warning-subtle text-warning">Medium</span></td>
+                                        <td>15 Sep 2026</td>
+                                        <td><span class="status-badge status-full-time">● Resolved</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>GR-5014</td>
+                                        <td>Payroll</td>
+                                        <td>Overtime compensation discrepancy for August</td>
+                                        <td><span class="badge bg-danger-subtle text-danger">High</span></td>
+                                        <td>17 Sep 2026</td>
+                                        <td><span class="status-badge status-freelance">● In Review</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================================
+                     TAB 8: PERFORMANCE ANALYTICS
+                     ========================================================================== -->
+                <div class="tab-pane fade" id="tab-performance" role="tabpanel">
+                    <div class="dashboard-header">
+                        <div>
+                            <h2>Performance Management</h2>
+                            <p class="text-muted m-0" style="font-size: 13px;">Quarterly KPIs, employee ratings and department productivity benchmarks.</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-cards">
+                        <div class="card-item card-green">
+                            <div class="card-label">Average Performance Score</div>
+                            <div class="card-main-value">94.8%</div>
+                            <div class="card-sub-values"><span>▲ +4.2% over Q2 targets</span></div>
+                        </div>
+                        <div class="card-item card-blue">
+                            <div class="card-label">Tasks Completed On-Time</div>
+                            <div class="card-main-value">1,248</div>
+                            <div class="card-sub-values"><span>98.2% on-time delivery</span></div>
+                        </div>
+                        <div class="card-item card-orange">
+                            <div class="card-label">Reviews Pending</div>
+                            <div class="card-main-value">12</div>
+                            <div class="card-sub-values"><span>Due by end of month</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================================
+                     TAB 9: INVOICES & BILLING
+                     ========================================================================== -->
+                <div class="tab-pane fade" id="tab-invoices" role="tabpanel">
+                    <div class="dashboard-header">
+                        <div>
+                            <h2>Invoices & Billing</h2>
+                            <p class="text-muted m-0" style="font-size: 13px;">Contractor disbursements, software subscriptions and vendor payouts.</p>
+                        </div>
+                    </div>
+
+                    <div class="employees-section">
+                        <div class="employees-header">
+                            <h6>Recent Billing & Invoices</h6>
+                        </div>
+                        <div class="table-responsive-wrapper">
+                            <table class="employees-table">
+                                <thead>
+                                    <tr>
+                                        <th>Invoice #</th>
+                                        <th>Vendor / Contractor</th>
+                                        <th>Category</th>
+                                        <th>Amount</th>
+                                        <th>Issue Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>INV-2026-081</td>
+                                        <td><strong>Figma Enterprise</strong></td>
+                                        <td>Design Tool Licenses</td>
+                                        <td class="fw-bold">$2,400.00</td>
+                                        <td>01 Sep 2026</td>
+                                        <td><span class="status-badge status-full-time">● Paid</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>INV-2026-082</td>
+                                        <td><strong>AWS Cloud Services</strong></td>
+                                        <td>Infrastructure</td>
+                                        <td class="fw-bold">$4,850.00</td>
+                                        <td>05 Sep 2026</td>
+                                        <td><span class="status-badge status-full-time">● Paid</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================================
+                     TAB 10: HIRING & RECRUITMENT
+                     ========================================================================== -->
+                <div class="tab-pane fade" id="tab-hiring" role="tabpanel">
+                    <div class="dashboard-header">
+                        <div>
+                            <h2>Hiring & Recruitment Pipeline</h2>
+                            <p class="text-muted m-0" style="font-size: 13px;">Active job requisitions, candidate interviews and talent acquisition.</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-cards">
+                        <div class="card-item card-blue">
+                            <div class="card-label">Open Positions</div>
+                            <div class="card-main-value">8</div>
+                            <div class="card-sub-values"><span>4 Engineering, 2 Design, 2 Sales</span></div>
+                        </div>
+                        <div class="card-item card-green">
+                            <div class="card-label">Active Candidates</div>
+                            <div class="card-main-value">46</div>
+                            <div class="card-sub-values"><span>12 in technical round</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================================
+                     TAB 11: SALARY INFORMATION
+                     ========================================================================== -->
+                <div class="tab-pane fade" id="tab-salary-info" role="tabpanel">
+                    <div class="dashboard-header">
+                        <div>
+                            <h2>Salary Information & Pay Bands</h2>
+                            <p class="text-muted m-0" style="font-size: 13px;">Organization salary benchmarks, grade scales and base ranges.</p>
+                        </div>
+                    </div>
+
+                    <div class="employees-section">
+                        <div class="employees-header">
+                            <h6>Salary Grade Ranges (Annual Base CTC)</h6>
+                        </div>
+                        <div class="table-responsive-wrapper">
+                            <table class="employees-table">
+                                <thead>
+                                    <tr>
+                                        <th>Band / Grade</th>
+                                        <th>Designation Levels</th>
+                                        <th>Min Base</th>
+                                        <th>Mid Base</th>
+                                        <th>Max Base</th>
+                                        <th>Total Employees</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="role-badge">Grade E1</span></td>
+                                        <td>Junior Associates & Trainees</td>
+                                        <td>$35,000</td>
+                                        <td>$45,000</td>
+                                        <td>$55,000</td>
+                                        <td>38 Members</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="role-badge">Grade E2</span></td>
+                                        <td>Senior Developers & Lead Designers</td>
+                                        <td>$60,000</td>
+                                        <td>$75,000</td>
+                                        <td>$95,000</td>
+                                        <td>74 Members</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="role-badge">Grade E3</span></td>
+                                        <td>Principal Engineers & Managers</td>
+                                        <td>$100,000</td>
+                                        <td>$125,000</td>
+                                        <td>$150,000</td>
+                                        <td>38 Members</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================================
+                     TAB 12: COMPENSATION BREAKDOWN (HIGHLIGHTED BY USER)
+                     ========================================================================== -->
+                <div class="tab-pane fade" id="tab-compensation" role="tabpanel">
+                    <div class="dashboard-header">
+                        <div>
+                            <h2>Compensation Breakdown</h2>
+                            <p class="text-muted m-0" style="font-size: 13px;">Detailed benefits structure, allowances, insurance and performance bonuses.</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-cards">
+                        <div class="card-item card-blue">
+                            <div class="card-label">Basic Pay Allocation</div>
+                            <div class="card-main-value">60%</div>
+                            <div class="card-sub-values"><span>Standard monthly base</span></div>
+                        </div>
+                        <div class="card-item card-orange">
+                            <div class="card-label">Allowances (HRA & Medical)</div>
+                            <div class="card-main-value">25%</div>
+                            <div class="card-sub-values"><span>House rent & wellness stipend</span></div>
+                        </div>
+                        <div class="card-item card-green">
+                            <div class="card-label">Performance Incentives</div>
+                            <div class="card-main-value">15%</div>
+                            <div class="card-sub-values"><span>Quarterly bonus distribution</span></div>
+                        </div>
+                    </div>
+
+                    <div class="employees-section">
+                        <div class="employees-header">
+                            <h6>Employee Compensation Structure Table</h6>
+                        </div>
+                        <div class="table-responsive-wrapper">
+                            <table class="employees-table">
+                                <thead>
+                                    <tr>
+                                        <th>Employee</th>
+                                        <th>Role</th>
+                                        <th>Basic (60%)</th>
+                                        <th>HRA (25%)</th>
+                                        <th>Special (15%)</th>
+                                        <th>Gross Total</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><div class="employee-name"><div class="employee-avatar">HN</div> Hazel Nutt</div></td>
+                                        <td>Lead UIUX Designer</td>
+                                        <td>$3,480</td>
+                                        <td>$1,450</td>
+                                        <td>$870</td>
+                                        <td class="fw-bold text-success">$5,800.00</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#modal-payslip" style="font-size: 11.5px;">
+                                                <i class="fas fa-receipt me-1"></i> Payslip
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="employee-name"><div class="employee-avatar av-2">SC</div> Simon Cyrene</div></td>
+                                        <td>Sr UIUX Designer</td>
+                                        <td>$3,120</td>
+                                        <td>$1,300</td>
+                                        <td>$780</td>
+                                        <td class="fw-bold text-success">$5,200.00</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#modal-payslip" style="font-size: 11.5px;">
+                                                <i class="fas fa-receipt me-1"></i> Payslip
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================================
+                     TAB 13: PROJECT-SPECIFIC DATA (HIGHLIGHTED BY USER)
+                     ========================================================================== -->
+                <div class="tab-pane fade" id="tab-project-data" role="tabpanel">
+                    <div class="dashboard-header">
+                        <div>
+                            <h2>Project-specific Data</h2>
+                            <p class="text-muted m-0" style="font-size: 13px;">Team staffing allocations, active project assignments and milestone tracking.</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-cards">
+                        <div class="card-item card-blue">
+                            <div class="card-label">Active Client Projects</div>
+                            <div class="card-main-value">24</div>
+                            <div class="card-sub-values"><span>18 On Schedule, 6 In Review</span></div>
+                        </div>
+                        <div class="card-item card-green">
+                            <div class="card-label">Resource Utilization</div>
+                            <div class="card-main-value">92%</div>
+                            <div class="card-sub-values"><span>138 / 150 members assigned</span></div>
+                        </div>
+                    </div>
+
+                    <div class="employees-section">
+                        <div class="employees-header">
+                            <h6>Current Project Allocations</h6>
+                        </div>
+                        <div class="table-responsive-wrapper">
+                            <table class="employees-table">
+                                <thead>
+                                    <tr>
+                                        <th>Project Code</th>
+                                        <th>Project Name</th>
+                                        <th>Lead</th>
+                                        <th>Team Size</th>
+                                        <th>Deadline</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>PRJ-801</strong></td>
+                                        <td>Occupite Web Platform Redesign</td>
+                                        <td>Hazel Nutt</td>
+                                        <td>8 Members</td>
+                                        <td>30 Oct 2026</td>
+                                        <td><span class="status-badge status-full-time">● On Track</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>PRJ-802</strong></td>
+                                        <td>FinTech Mobile iOS Application</td>
+                                        <td>Simon Cyrene</td>
+                                        <td>12 Members</td>
+                                        <td>15 Nov 2026</td>
+                                        <td><span class="status-badge status-full-time">● On Track</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>PRJ-803</strong></td>
+                                        <td>Marketing Automation Engine</td>
+                                        <td>Aida Bugg</td>
+                                        <td>6 Members</td>
+                                        <td>10 Dec 2026</td>
+                                        <td><span class="status-badge status-freelance">● In Planning</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         BOOTSTRAP MODALS
+         ========================================================================== -->
+    <!-- 1. Add Employee Modal -->
+    <div class="modal fade" id="modal-add-employee" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold"><i class="fas fa-user-plus text-primary me-2"></i> Add New Employee</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="font-size: 13px;">Full Name</label>
+                        <input type="text" class="form-control" placeholder="e.g. Jordan Miller">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="font-size: 13px;">Email Address</label>
+                        <input type="email" class="form-control" placeholder="jordan@occupite.io">
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-6">
+                            <label class="form-label fw-semibold" style="font-size: 13px;">Role</label>
+                            <input type="text" class="form-control" placeholder="e.g. UIUX Designer">
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label fw-semibold" style="font-size: 13px;">Department</label>
+                            <select class="form-select">
+                                <option>Team Projects</option>
+                                <option>Team Marketing</option>
+                                <option>Engineering</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary rounded-pill px-4" data-bs-dismiss="modal">Save Record</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Apply Leave Modal -->
+    <div class="modal fade" id="modal-apply-leave" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold"><i class="fas fa-calendar-plus text-warning me-2"></i> Apply for Leave</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="font-size: 13px;">Leave Type</label>
+                        <select class="form-select">
+                            <option>Annual Paid Leave (14 days remaining)</option>
+                            <option>Sick Leave (8 days remaining)</option>
+                            <option>Casual Leave (5 days remaining)</option>
+                        </select>
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-6">
+                            <label class="form-label fw-semibold" style="font-size: 13px;">Start Date</label>
+                            <input type="date" class="form-control">
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label fw-semibold" style="font-size: 13px;">End Date</label>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="font-size: 13px;">Reason</label>
+                        <textarea class="form-control" rows="3" placeholder="Context for HR approval..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary rounded-pill px-4" data-bs-dismiss="modal">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Payslip Statement Modal -->
+    <div class="modal fade" id="modal-payslip" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold"><i class="fas fa-file-invoice text-success me-2"></i> Employee Monthly Salary Statement</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="payslip-sheet">
+                        <div class="d-flex justify-content-between align-items-center pb-3 mb-3 border-bottom">
+                            <div>
+                                <h5 class="fw-bold m-0 text-dark">EMPLOYEE & HR MANAGEMENT DIVISION</h5>
+                                <span class="text-muted" style="font-size: 12px;">Payroll Department • Period: September 2026</span>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge bg-success-subtle text-success px-3 py-2 fw-bold">DISBURSED</span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 g-2 bg-light p-3 rounded" style="font-size: 13px;">
+                            <div class="col-6">
+                                <div><strong>Employee Name:</strong> Hazel Nutt</div>
+                                <div><strong>Employee ID:</strong> EMP120124</div>
+                            </div>
+                            <div class="col-6">
+                                <div><strong>Designation:</strong> Lead UIUX Designer</div>
+                                <div><strong>Department:</strong> Team Projects</div>
+                            </div>
+                        </div>
+
+                        <div class="row g-4 mb-3" style="font-size: 13px;">
+                            <div class="col-6">
+                                <h6 class="fw-bold text-success border-bottom pb-1">Earnings (+)</h6>
+                                <div class="d-flex justify-content-between py-1"><span>Basic Salary:</span> <strong>$3,480.00</strong></div>
+                                <div class="d-flex justify-content-between py-1"><span>HRA:</span> <strong>$1,450.00</strong></div>
+                                <div class="d-flex justify-content-between py-1"><span>Special Allowance:</span> <strong>$870.00</strong></div>
+                                <div class="d-flex justify-content-between pt-2 border-top fw-bold text-success"><span>Total Gross:</span> <strong>$5,800.00</strong></div>
+                            </div>
+                            <div class="col-6">
+                                <h6 class="fw-bold text-danger border-bottom pb-1">Deductions (-)</h6>
+                                <div class="d-flex justify-content-between py-1"><span>Provident Fund (PF):</span> <strong>$464.00</strong></div>
+                                <div class="d-flex justify-content-between py-1"><span>Income Tax:</span> <strong>$580.00</strong></div>
+                                <div class="d-flex justify-content-between pt-2 border-top fw-bold text-danger"><span>Total Deductions:</span> <strong>$1,044.00</strong></div>
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-primary-subtle text-primary rounded d-flex justify-content-between align-items-center">
+                            <span class="fw-bold">Net Disbursed Take-Home Pay:</span>
+                            <span class="fs-4 fw-bold">$4,756.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Employee Detail Modal -->
+    <div class="modal fade" id="modal-emp-detail" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold"><i class="fas fa-id-card text-primary me-2"></i> Employee Profile Overview</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center py-4">
+                    <div class="employee-avatar mx-auto mb-3" style="width: 60px; height: 60px; font-size: 20px;">HN</div>
+                    <h5 class="fw-bold m-0">Hazel Nutt</h5>
+                    <p class="text-muted" style="font-size: 13px;">Lead UIUX Designer • Team Projects</p>
+                    <span class="status-badge status-full-time mb-3">● Full-time Active</span>
+                    <div class="row g-2 text-start bg-light p-3 rounded mt-2" style="font-size: 13px;">
+                        <div class="col-6 text-muted">Employee ID:</div><div class="col-6 fw-bold">EMP120124</div>
+                        <div class="col-6 text-muted">Email:</div><div class="col-6 fw-bold">hazelnut@mail.com</div>
+                        <div class="col-6 text-muted">Performance:</div><div class="col-6 fw-bold text-success">98% Optimal</div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-primary rounded-pill w-100" data-bs-dismiss="modal">Close Profile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Feedback Modal -->
+    <div class="modal fade" id="modal-feedback" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold"><i class="fas fa-comment-dots text-primary me-2"></i> Submit Feedback</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="font-size: 13px;">Category</label>
+                        <select class="form-select">
+                            <option>Workplace Culture</option>
+                            <option>Facilities & Tools</option>
+                            <option>Learning & Growth</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="font-size: 13px;">Your Thoughts</label>
+                        <textarea class="form-control" rows="3" placeholder="Share anonymous suggestions..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary rounded-pill px-4" data-bs-dismiss="modal">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. Complaint Modal -->
+    <div class="modal fade" id="modal-complaint" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold"><i class="fas fa-shield-alt text-danger me-2"></i> File Grievance Ticket</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="font-size: 13px;">Category</label>
+                        <select class="form-select">
+                            <option>IT & Access Issue</option>
+                            <option>Payroll & Allowance</option>
+                            <option>Workplace Facilities</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="font-size: 13px;">Subject</label>
+                        <input type="text" class="form-control" placeholder="Brief summary of the issue...">
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger rounded-pill px-4" data-bs-dismiss="modal">Submit Ticket</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. Export Modal -->
+    <div class="modal fade" id="modal-export" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content text-center p-3">
+                <div class="my-2">
+                    <i class="fas fa-file-download text-primary" style="font-size: 44px;"></i>
+                </div>
+                <h6 class="fw-bold mb-1">Export HR Report</h6>
+                <p class="text-muted" style="font-size: 12px;">Download current dashboard dataset:</p>
+                <div class="d-grid gap-2 mt-3">
+                    <button type="button" class="btn btn-outline-primary btn-sm rounded-pill" data-bs-dismiss="modal"><i class="fas fa-file-pdf me-1"></i> Export as PDF</button>
+                    <button type="button" class="btn btn-outline-success btn-sm rounded-pill" data-bs-dismiss="modal"><i class="fas fa-file-excel me-1"></i> Export as Excel (CSV)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. Settings Modal -->
+    <div class="modal fade" id="modal-settings" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold"><i class="fas fa-cog text-secondary me-2"></i> System Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="font-size: 13px;">Organization Name</label>
+                        <input type="text" class="form-control" value="Employee and HR Management System">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="font-size: 13px;">Timezone</label>
+                        <input type="text" class="form-control" value="Asia/Kolkata (IST)">
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-primary rounded-pill px-4" data-bs-dismiss="modal">Save Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 9. Help Modal -->
+    <div class="modal fade" id="modal-help" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold"><i class="fas fa-question-circle text-primary me-2"></i> HRMS Help & Documentation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" style="font-size: 13px;">
+                    <p>Welcome to <strong>Employee and HR Management System</strong>. Use the sidebar to navigate between modules:</p>
+                    <ul>
+                        <li><strong>Dashboard:</strong> Overview KPI cards, income charts, and performance breakdown.</li>
+                        <li><strong>Employees:</strong> Organization directory & member profiles.</li>
+                        <li><strong>Attendance:</strong> Time tracking, shift logs and punch clock.</li>
+                        <li><strong>Leave Management:</strong> Leave requests & allowance tracking.</li>
+                        <li><strong>Payrolls:</strong> Compensation breakdown & payslips.</li>
+                        <li><strong>Compensation Breakdown:</strong> Detailed allowances and incentive structure.</li>
+                        <li><strong>Project-specific Data:</strong> Staffing and project allocations.</li>
+                    </ul>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Got it</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 10. Notifications Modal (Enhanced HR Alert Center) -->
+    <div class="modal fade" id="modal-notifications" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 440px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <h5 class="modal-title fw-bold m-0"><i class="fas fa-bell text-warning me-2"></i> HR Notification Center</h5>
+                        <span class="text-muted" style="font-size: 12px;">3 Unread Alerts for Admin</span>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <!-- Notification 1 -->
+                    <div class="p-3 border-bottom d-flex gap-3 align-items-start bg-light">
+                        <div class="rounded-circle p-2 bg-warning-subtle text-warning flex-shrink-0" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between">
+                                <strong style="font-size: 13px;">Hazel Nutt requested 5 days leave</strong>
+                                <span class="text-muted" style="font-size: 10.5px;">10m ago</span>
+                            </div>
+                            <p class="text-muted m-0" style="font-size: 11.5px;">Annual vacation from 22 Jul to 26 Jul 2024.</p>
+                            <div class="mt-2 d-flex gap-2">
+                                <button type="button" class="btn btn-primary btn-sm rounded-pill py-0 px-3" style="font-size: 11px;" data-bs-dismiss="modal">Approve</button>
+                                <button type="button" class="btn btn-light btn-sm rounded-pill py-0 px-3 border" style="font-size: 11px;" data-bs-dismiss="modal">Reject</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification 2 -->
+                    <div class="p-3 border-bottom d-flex gap-3 align-items-start bg-light">
+                        <div class="rounded-circle p-2 bg-success-subtle text-success flex-shrink-0" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between">
+                                <strong style="font-size: 13px;">July 2024 Payroll Ready</strong>
+                                <span class="text-muted" style="font-size: 10.5px;">1h ago</span>
+                            </div>
+                            <p class="text-muted m-0" style="font-size: 11.5px;">150 salary statements calculated for review.</p>
+                        </div>
+                    </div>
+
+                    <!-- Notification 3 -->
+                    <div class="p-3 d-flex gap-3 align-items-start">
+                        <div class="rounded-circle p-2 bg-primary-subtle text-primary flex-shrink-0" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between">
+                                <strong style="font-size: 13px;">New Grievance Ticket #TKT-1082</strong>
+                                <span class="text-muted" style="font-size: 10.5px;">3h ago</span>
+                            </div>
+                            <p class="text-muted m-0" style="font-size: 11.5px;">Workplace equipment request pending review.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 justify-content-between">
+                    <a href="javascript:void(0)" class="text-decoration-none" style="font-size: 12px;" data-bs-dismiss="modal">Mark all as read</a>
+                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 11. Date Range & Period Filter Modal -->
+    <div class="modal fade" id="modal-date-picker" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <h5 class="modal-title fw-bold m-0"><i class="far fa-calendar-alt text-primary me-2"></i> Filter Date Range & HR Period</h5>
+                        <span class="text-muted" style="font-size: 12px;">Select reporting range for dashboard metrics</span>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <label class="form-label fw-bold text-muted mb-2" style="font-size: 11.5px; text-transform: uppercase;">Quick Preset Periods</label>
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <button type="button" class="date-preset-btn active" data-bs-dismiss="modal">01 July - 31 July 2024</button>
+                        <button type="button" class="date-preset-btn" data-bs-dismiss="modal">Today</button>
+                        <button type="button" class="date-preset-btn" data-bs-dismiss="modal">This Week</button>
+                        <button type="button" class="date-preset-btn" data-bs-dismiss="modal">Last Month (June 2024)</button>
+                        <button type="button" class="date-preset-btn" data-bs-dismiss="modal">Q3 2024</button>
+                        <button type="button" class="date-preset-btn" data-bs-dismiss="modal">Year to Date (2024)</button>
+                    </div>
+
+                    <div class="row g-2 mb-3">
+                        <div class="col-6">
+                            <label class="form-label fw-semibold" style="font-size: 12px;">Start Date</label>
+                            <input type="date" class="form-control form-control-sm" value="2024-07-01">
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label fw-semibold" style="font-size: 12px;">End Date</label>
+                            <input type="date" class="form-control form-control-sm" value="2024-07-31">
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="form-label fw-semibold" style="font-size: 12px;">Department Filter</label>
+                        <select class="form-select form-select-sm">
+                            <option selected>All Departments (Company-wide)</option>
+                            <option>Engineering & IT</option>
+                            <option>Product & UI/UX Design</option>
+                            <option>Human Resources & Ops</option>
+                            <option>Sales & Marketing</option>
+                            <option>Finance & Accounting</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light rounded-pill px-3" data-bs-dismiss="modal">Reset</button>
+                    <button type="button" class="btn btn-primary rounded-pill px-4" data-bs-dismiss="modal"><i class="fas fa-check me-1"></i> Apply Filter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 12. Company Calendar & Schedule Modal -->
+    <div class="modal fade" id="modal-calendar-view" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <h5 class="modal-title fw-bold m-0"><i class="fas fa-calendar-alt text-primary me-2"></i> Company Calendar & Schedule</h5>
+                        <span class="text-muted" style="font-size: 12px;">July 2024 — General Shift & Events</span>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Month Navigation Header -->
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <h6 class="fw-bold m-0" style="font-size: 16px;">July 2024</h6>
+                            <span class="badge bg-light text-dark border">Q3 Fiscal Year</span>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-2"><i class="fas fa-chevron-left"></i></button>
+                            <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold">Today</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-2"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- 7 Day Column Headers -->
+                    <div class="calendar-grid-header">
+                        <div>SUN</div><div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div>
+                    </div>
+
+                    <!-- 5-Week Grid -->
+                    <div class="calendar-grid-days">
+                        <!-- Week 1 -->
+                        <div class="calendar-day-cell other-month"><span>30</span></div>
+                        <div class="calendar-day-cell"><span>1</span><span class="cal-event-dot bg-primary"></span></div>
+                        <div class="calendar-day-cell"><span>2</span></div>
+                        <div class="calendar-day-cell"><span>3</span></div>
+                        <div class="calendar-day-cell holiday"><span>4</span><span class="badge bg-danger" style="font-size: 8px; padding: 2px;">Holiday</span></div>
+                        <div class="calendar-day-cell"><span>5</span><span class="cal-event-dot bg-success"></span></div>
+                        <div class="calendar-day-cell"><span>6</span></div>
+
+                        <!-- Week 2 -->
+                        <div class="calendar-day-cell"><span>7</span></div>
+                        <div class="calendar-day-cell"><span>8</span></div>
+                        <div class="calendar-day-cell"><span>9</span><span class="cal-event-dot bg-warning"></span></div>
+                        <div class="calendar-day-cell"><span>10</span></div>
+                        <div class="calendar-day-cell"><span>11</span></div>
+                        <div class="calendar-day-cell"><span>12</span><span class="cal-event-dot bg-info"></span></div>
+                        <div class="calendar-day-cell"><span>13</span></div>
+
+                        <!-- Week 3 -->
+                        <div class="calendar-day-cell"><span>14</span></div>
+                        <div class="calendar-day-cell"><span>15</span></div>
+                        <div class="calendar-day-cell"><span>16</span></div>
+                        <div class="calendar-day-cell"><span>17</span></div>
+                        <div class="calendar-day-cell today"><span>18</span><span class="badge bg-primary" style="font-size: 8px; padding: 2px;">Today</span></div>
+                        <div class="calendar-day-cell"><span>19</span></div>
+                        <div class="calendar-day-cell holiday"><span>20</span><span class="badge bg-danger" style="font-size: 8px; padding: 2px;">Outing</span></div>
+
+                        <!-- Week 4 -->
+                        <div class="calendar-day-cell"><span>21</span></div>
+                        <div class="calendar-day-cell"><span>22</span><span class="cal-event-dot" style="background:#764ba2;"></span></div>
+                        <div class="calendar-day-cell"><span>23</span></div>
+                        <div class="calendar-day-cell"><span>24</span></div>
+                        <div class="calendar-day-cell"><span>25</span><span class="badge bg-success" style="font-size: 8px; padding: 2px;">Payroll</span></div>
+                        <div class="calendar-day-cell"><span>26</span></div>
+                        <div class="calendar-day-cell"><span>27</span></div>
+
+                        <!-- Week 5 -->
+                        <div class="calendar-day-cell"><span>28</span></div>
+                        <div class="calendar-day-cell"><span>29</span></div>
+                        <div class="calendar-day-cell"><span>30</span></div>
+                        <div class="calendar-day-cell"><span>31</span></div>
+                        <div class="calendar-day-cell other-month"><span>1</span></div>
+                        <div class="calendar-day-cell other-month"><span>2</span></div>
+                        <div class="calendar-day-cell other-month"><span>3</span></div>
+                    </div>
+
+                    <!-- Upcoming Key Events -->
+                    <div class="mt-3 p-3 bg-light rounded-3 border">
+                        <h6 class="fw-bold mb-2" style="font-size: 13px;">Upcoming Key Schedule & Milestones:</h6>
+                        <div class="d-flex flex-wrap gap-3" style="font-size: 12px;">
+                            <div><span class="cal-event-dot bg-danger me-1"></span> <strong>July 04:</strong> Independence Day / Paid Holiday</div>
+                            <div><span class="cal-event-dot bg-primary me-1"></span> <strong>July 18:</strong> Sprint Review & HR Check</div>
+                            <div><span class="cal-event-dot bg-success me-1"></span> <strong>July 25:</strong> Monthly Payroll Disbursement</div>
+                            <div><span class="cal-event-dot bg-warning me-1"></span> <strong>July 31:</strong> Monthly Attendance Cutoff</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary rounded-pill px-4" data-bs-dismiss="modal"><i class="fas fa-check me-1"></i> Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 13. Quick Team Directory Modal -->
+    <div class="modal fade" id="modal-quick-team" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <h5 class="modal-title fw-bold m-0"><i class="fas fa-users text-primary me-2"></i> Active Team Roster</h5>
+                        <span class="text-muted" style="font-size: 12px;">150 Total Members — 142 Active Today</span>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-3">
+                    <div class="mb-3">
+                        <input type="text" class="form-control form-control-sm" placeholder="Quick search members by name or role...">
+                    </div>
+
+                    <div class="d-flex flex-column gap-2" style="max-height: 320px; overflow-y: auto;">
+                        <div class="d-flex align-items-center justify-content-between p-2 rounded border bg-light">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="employee-avatar">HN</div>
+                                <div>
+                                    <div class="fw-bold" style="font-size: 13px;">Hazel Nutt</div>
+                                    <div class="text-muted" style="font-size: 11px;">Senior UI/UX Designer • <span class="text-success fw-semibold">● Online</span></div>
+                                </div>
+                            </div>
+                            <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Product</span>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-between p-2 rounded border bg-light">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="employee-avatar av-2">SC</div>
+                                <div>
+                                    <div class="fw-bold" style="font-size: 13px;">Simon Cyrene</div>
+                                    <div class="text-muted" style="font-size: 11px;">Full Stack Engineer • <span class="text-success fw-semibold">● Online</span></div>
+                                </div>
+                            </div>
+                            <span class="badge bg-info-subtle text-info border border-info-subtle">Engineering</span>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-between p-2 rounded border bg-light">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="employee-avatar av-3">AB</div>
+                                <div>
+                                    <div class="fw-bold" style="font-size: 13px;">Aida Bugg</div>
+                                    <div class="text-muted" style="font-size: 11px;">HR Generalist • <span class="text-warning fw-semibold">● In Meeting</span></div>
+                                </div>
+                            </div>
+                            <span class="badge bg-success-subtle text-success border border-success-subtle">HR & Ops</span>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-between p-2 rounded border bg-light">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="employee-avatar av-4">TB</div>
+                                <div>
+                                    <div class="fw-bold" style="font-size: 13px;">Terry Aki</div>
+                                    <div class="text-muted" style="font-size: 11px;">Frontend Developer • <span class="text-muted fw-semibold">● On Leave</span></div>
+                                </div>
+                            </div>
+                            <span class="badge bg-info-subtle text-info border border-info-subtle">Engineering</span>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-between p-2 rounded border bg-light">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="employee-avatar av-5">PM</div>
+                                <div>
+                                    <div class="fw-bold" style="font-size: 13px;">Paige Turner</div>
+                                    <div class="text-muted" style="font-size: 11px;">Marketing Lead • <span class="text-success fw-semibold">● Online</span></div>
+                                </div>
+                            </div>
+                            <span class="badge bg-warning-subtle text-warning border border-warning-subtle">Marketing</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary rounded-pill px-4" data-bs-dismiss="modal"><i class="fas fa-check me-1"></i> Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 14. Admin User Profile Modal -->
+    <div class="modal fade" id="modal-user-profile" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center pt-0 px-4 pb-4">
+                    <div class="user-avatar mx-auto mb-3" style="width: 72px; height: 72px; font-size: 26px; box-shadow: 0 4px 12px rgba(102,126,234,0.45);">AD</div>
+                    <h5 class="fw-bold mb-0">Admin</h5>
+                    <span class="badge bg-primary rounded-pill px-3 py-1 my-2" style="font-size: 11px;">Super Administrator</span>
+                    <p class="text-muted mb-3" style="font-size: 12px;">admin@hrms-corp.com • Employee ID: <strong>EMP-0001</strong></p>
+
+                    <!-- Status Selector -->
+                    <div class="p-3 bg-light rounded-3 border text-start mb-3">
+                        <label class="form-label fw-bold mb-1" style="font-size: 11px; text-transform: uppercase; color: #64748b;">Current Working Status</label>
+                        <select class="form-select form-select-sm fw-semibold">
+                            <option selected>🟢 Available for work</option>
+                            <option>🟡 In a Meeting</option>
+                            <option>🔴 Busy / Do Not Disturb</option>
+                            <option>⚪ Away / On Leave</option>
+                        </select>
+                    </div>
+
+                    <!-- Profile Meta Details -->
+                    <div class="row g-2 text-start mb-3" style="font-size: 12px;">
+                        <div class="col-6">
+                            <div class="p-2 border rounded bg-white">
+                                <span class="text-muted d-block" style="font-size: 11px;">Role & Scope</span>
+                                <strong>HR & Global Ops</strong>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-2 border rounded bg-white">
+                                <span class="text-muted d-block" style="font-size: 11px;">Current Shift</span>
+                                <strong>09:00 AM - 06:00 PM</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Shortcuts -->
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-outline-primary btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#modal-settings" data-bs-dismiss="modal"><i class="fas fa-sliders-h me-1"></i> System Settings & Preferences</button>
+                        <button type="button" class="btn btn-outline-danger btn-sm rounded-pill" data-bs-dismiss="modal"><i class="fas fa-sign-out-alt me-1"></i> Sign Out / Switch User</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 Official Component Bundle (Powers standard tabs & modals without any custom JS) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
