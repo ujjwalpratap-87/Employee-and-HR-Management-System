@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard</title>
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+
+<div class="row">
+
+<!-- SIDEBAR -->
+
+<div class="col-md-3 col-lg-2 p-0 sidebar">
+
+    <div class="sidebar-brand">
+
+        <h4>Employee & HR</h4>
+
+        <small>Admin Panel</small>
+
+    </div>
+
+
+    <div class="sidebar-menu">
+
+        <a href="admin-dashboard.html"
+           class="active">
+            Dashboard
+        </a>
+
+        <a href="employees.html">
+            Employees
+        </a>
+
+        <a href="attendance.html">
+            Attendance
+        </a>
+
+        <a href="leave.html">
+            Leave Management
+        </a>
+
+        <a href="payroll.html">
+            Payroll
+        </a>
+
+        <a href="feedback.html">
+            Feedback & Reviews
+        </a>
+
+        <a href="complaints.html">
+            Complaints
+        </a>
+
+        <a href="profile.html">
+            Profile
+        </a>
+
+        <a href="index.html">
+            Logout
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- MAIN -->
+
+<div class="col-md-9 col-lg-10 p-0">
+
+    <div class="topbar">
+
+        <strong>
+            Admin Dashboard
+        </strong>
+
+        <div class="user-info">
+
+            <span>
+                Welcome, Ujjwal
+            </span>
+
+            <div class="avatar">
+                US
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="main-content">
+
+        <h2 class="page-title">
+            Dashboard
+        </h2>
+
+        <p class="page-subtitle">
+            Employee and HR Management System overview
+        </p>
+
+
+        <!-- STAT CARDS -->
+
+        <div class="row g-4 mb-4">
+
+            <div class="col-sm-6 col-xl-3">
+
+                <div class="dashboard-card">
+
+                    <h6>
+                        Total Employees
+                    </h6>
+
+                    <div class="dashboard-number">
+                        128
+                    </div>
+
+                    <small class="text-muted">
+                        Active employees
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-sm-6 col-xl-3">
+
+                <div class="dashboard-card">
+
+                    <h6>
+                        Present Today
+                    </h6>
+
+                    <div class="dashboard-number">
+                        112
+                    </div>
+
+                    <small class="text-muted">
+                        Attendance recorded
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-sm-6 col-xl-3">
+
+                <div class="dashboard-card">
+
+                    <h6>
+                        Leave Requests
+                    </h6>
+
+                    <div class="dashboard-number">
+                        08
+                    </div>
+
+                    <small class="text-muted">
+                        Awaiting review
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-sm-6 col-xl-3">
+
+                <div class="dashboard-card">
+
+                    <h6>
+                        Complaints
+                    </h6>
+
+                    <div class="dashboard-number">
+                        05
+                    </div>
+
+                    <small class="text-muted">
+                        Open complaints
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RECENT EMPLOYEES -->
+
+        <div class="row g-4">
+
+            <div class="col-lg-8">
+
+                <div class="custom-table">
+
+                    <div class="p-4">
+
+                        <h5>
+                            Recent Employee Records
+                        </h5>
+
+                    </div>
+
+                    <div class="table-responsive">
+
+                        <table class="table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Employee</th>
+
+                                    <th>Department</th>
+
+                                    <th>Designation</th>
+
+                                    <th>Status</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>
+                                        Aarav Sharma
+                                    </td>
+
+                                    <td>
+                                        IT
+                                    </td>
+
+                                    <td>
+                                        Developer
+                                    </td>
+
+                                    <td>
+                                        <span class="badge bg-success">
+                                            Active
+                                        </span>
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        Priya Verma
+                                    </td>
+
+                                    <td>
+                                        HR
+                                    </td>
+
+                                    <td>
+                                        HR Executive
+                                    </td>
+
+                                    <td>
+                                        <span class="badge bg-success">
+                                            Active
+                                        </span>
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        Rahul Singh
+                                    </td>
+
+                                    <td>
+                                        Finance
+                                    </td>
+
+                                    <td>
+                                        Accountant
+                                    </td>
+
+                                    <td>
+                                        <span class="badge bg-success">
+                                            Active
+                                        </span>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="col-lg-4">
+
+                <div class="dashboard-card">
+
+                    <h5>
+                        Quick Actions
+                    </h5>
+
+                    <div class="d-grid gap-2 mt-3">
+
+                        <a
+                        href="employees.html"
+                        class="btn btn-primary">
+
+                            Add Employee
+
+                        </a>
+
+
+                        <a
+                        href="leave.html"
+                        class="btn btn-outline-primary">
+
+                            Review Leave
+
+                        </a>
+
+
+                        <a
+                        href="complaints.html"
+                        class="btn btn-outline-primary">
+
+                            View Complaints
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
